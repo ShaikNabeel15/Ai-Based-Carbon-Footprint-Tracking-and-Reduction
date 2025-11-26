@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar" style="background-color: #0f172a;">
+        <div class="container">
+            <a href="/admin" style="font-size: 1.5rem; font-weight: 700; color: white;">Carbon AI <span
+                    style="color: var(--accent-color);">Admin</span></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Admin Overview</h1>
+
+        <div class="card">
+            <h2><span style="color: var(--accent-color);">AI</span> Market Analysis</h2>
+            <div style="line-height: 1.6; color: #cbd5e1;">
+                {{ summary | safe }}
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Factory Status</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Factory Name</th>
+                        <th>ID</th>
+                        <th>Carbon Produced</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for factory in factories %}
+                    <tr>
+                        <td>{{ factory.factory_name }}</td>
+                        <td>{{ factory.factory_id }}</td>
+                        <td>{{ factory.carbon_produced }}</td>
+                        <td>
+                            {% if factory.carbon_produced > 1000 %}
+                            <span style="color: var(--danger-color);">Over Limit</span>
+                            {% else %}
+                            <span style="color: var(--success-color);">Compliant</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>All Transactions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Buyer</th>
+                        <th>Seller</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in transactions %}
+                    <tr>
+                        <td>{{ tx.timestamp }}</td>
+                        <td>{{ tx.buyer_id }}</td>
+                        <td>{{ tx.seller_id }}</td>
+                        <td>{{ tx.quantity }}</td>
+                        <td>${{ tx.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/dashboard" style="font-size: 1.5rem; font-weight: 700; color: white;">Carbon AI</a>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/history">History</a>
+                <a href="/logout" style="color: var(--danger-color);">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Transaction History</h1>
+
+        <div class="card">
+            {% if transactions %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Other Party</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tx in transactions %}
+                    <tr>
+                        <td>{{ tx.timestamp }}</td>
+                        <td>
+                            {% if tx.buyer_id == session['user']['factory_id'] %}
+                            <span style="color: var(--danger-color);">BOUGHT</span>
+                            {% else %}
+                            <span style="color: var(--success-color);">SOLD</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if tx.buyer_id == session['user']['factory_id'] %}
+                            {{ tx.seller_id }}
+                            {% else %}
+                            {{ tx.buyer_id }}
+                            {% endif %}
+                        </td>
+                        <td>{{ tx.quantity }} tons</td>
+                        <td>${{ tx.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p style="color: #94a3b8; margin-top: 1rem;">No transactions found.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

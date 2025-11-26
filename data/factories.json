@@ -1,0 +1,38 @@
+[
+    {
+        "factory_name": "Factory A",
+        "factory_id": "f001",
+        "mail_id": "a@test.com",
+        "password": "$2b$12$uAmp0wEPp.TbVAY20CyBdexmEEdeFFDJkom0ZTRcevLjVZrFnbT/q",
+        "carbon_produced": 1200,
+        "selling_quantity": 0,
+        "buy_quantity": 150,
+        "price_per_ton": 0,
+        "sold_carbon": 0,
+        "carbon_bought_as_per_now": 50
+    },
+    {
+        "factory_name": "Factory B",
+        "factory_id": "f002",
+        "mail_id": "b@test.com",
+        "password": "$2b$12$gEbn1ftjQ1TiAyDLsNOUEeM1jDPwG0ck.ChxKYAP16dxxO8ekE/f6",
+        "carbon_produced": 800,
+        "selling_quantity": 50,
+        "buy_quantity": 0,
+        "price_per_ton": 50,
+        "sold_carbon": 50,
+        "carbon_bought_as_per_now": 0
+    },
+    {
+        "factory_name": "fact00001",
+        "factory_id": "f000001",
+        "mail_id": "fact01@gmail.com",
+        "password": "$2b$12$7ERtdiZv3K8m9SCupDGYzOiLdrHY8Ia.CmuP/rbT1FmPdko8m2hNC",
+        "carbon_produced": 507.0,
+        "selling_quantity": 400.0,
+        "buy_quantity": 0,
+        "price_per_ton": 1000.0,
+        "sold_carbon": 0,
+        "carbon_bought_as_per_now": 0
+    }
+]

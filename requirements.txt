@@ -1,0 +1,4 @@
+flask
+bcrypt
+google-generativeai
+python-dotenv

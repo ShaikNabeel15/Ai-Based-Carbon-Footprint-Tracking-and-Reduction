@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/dashboard" style="font-size: 1.5rem; font-weight: 700; color: white;">Carbon AI</a>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/history">History</a>
+                <a href="/logout" style="color: var(--danger-color);">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Hello, {{ user.factory_name }}</h1>
+
+        <div class="grid">
+            <div class="card stat-card">
+                <div class="stat-label">Carbon Produced</div>
+                <div class="stat-value">{{ user.carbon_produced }} tons</div>
+                <a href="/carbon_input" class="btn btn-primary">Update Input</a>
+            </div>
+
+            <div class="card stat-card">
+                <div class="stat-label">Status</div>
+                {% if user.carbon_produced > 1000 %}
+                <div class="stat-value" style="color: var(--danger-color);">Over Limit</div>
+                <p>Exceeded by {{ user.carbon_produced - 1000 }} tons</p>
+                <a href="/buy" class="btn btn-danger">Buy Credits</a>
+                {% else %}
+                <div class="stat-value" style="color: var(--success-color);">Compliant</div>
+                <p>Available to sell: {{ 1000 - user.carbon_produced }} tons</p>
+                <a href="/sell" class="btn btn-primary" style="background-color: var(--success-color);">Sell Credits</a>
+                {% endif %}
+            </div>
+
+            <div class="card stat-card">
+                <div class="stat-label">Wallet</div>
+                <div class="stat-value">{{ user.sold_carbon }} tons sold</div>
+                <p>Credits Bought: {{ user.carbon_bought_as_per_now }}</p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem;">
+            <h2><span style="color: var(--accent-color);">AI</span> Insights & Recommendations</h2>
+            <div style="line-height: 1.6; color: #cbd5e1;">
+                {{ ai_suggestions | safe }}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

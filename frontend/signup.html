@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container" style="max-width: 500px; margin-top: 5vh;">
+        <div class="card">
+            <h1 style="text-align: center; font-size: 2rem;">Create Account</h1>
+            <p style="text-align: center; color: #94a3b8; margin-bottom: 2rem;">Register your factory for carbon
+                tracking</p>
+
+            {% if error %}
+            <div class="alert alert-error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <label for="factory_name">Factory Name</label>
+                    <input type="text" id="factory_name" name="factory_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="factory_id">Factory ID</label>
+                    <input type="text" id="factory_id" name="factory_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+            </form>
+
+            <p style="text-align: center; margin-top: 1.5rem; color: #94a3b8;">
+                Already have an account? <a href="/login">Sign in</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

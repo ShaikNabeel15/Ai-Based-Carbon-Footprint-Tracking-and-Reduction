@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Credits - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/dashboard" style="font-size: 1.5rem; font-weight: 700; color: white;">Carbon AI</a>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/history">History</a>
+                <a href="/logout" style="color: var(--danger-color);">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="max-width: 600px; margin-top: 5vh;">
+        <div class="card">
+            <h2>Sell Carbon Credits</h2>
+            <p style="color: #94a3b8; margin-bottom: 2rem;">List your excess carbon credits for sale.</p>
+
+            {% if error %}
+            <div class="alert alert-error">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            <form action="/sell" method="POST">
+                <div class="form-group">
+                    <label for="quantity">Quantity to Sell (Tons)</label>
+                    <input type="number" step="0.01" id="quantity" name="quantity" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price per Ton ($)</label>
+                    <input type="number" step="0.01" id="price" name="price" required>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">List for Sale</button>
+                    <a href="/dashboard" class="btn"
+                        style="background-color: #334155; color: white; flex: 1;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

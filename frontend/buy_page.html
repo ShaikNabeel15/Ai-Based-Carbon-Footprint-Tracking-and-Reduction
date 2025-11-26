@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Credits - Carbon AI Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/dashboard" style="font-size: 1.5rem; font-weight: 700; color: white;">Carbon AI</a>
+            <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/history">History</a>
+                <a href="/logout" style="color: var(--danger-color);">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Buy Carbon Credits</h1>
+
+        {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <div class="card">
+            <h2>Available Sellers</h2>
+            {% if sellers %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Factory Name</th>
+                        <th>Available Quantity</th>
+                        <th>Price per Ton</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for seller in sellers %}
+                    <tr>
+                        <td>{{ seller.factory_name }}</td>
+                        <td>{{ seller.selling_quantity }} tons</td>
+                        <td>${{ seller.price_per_ton }}</td>
+                        <td>
+                            <form action="/buy" method="POST" style="display: flex; gap: 0.5rem;">
+                                <input type="hidden" name="seller_id" value="{{ seller.factory_id }}">
+                                <input type="number" name="quantity" placeholder="Qty"
+                                    max="{{ seller.selling_quantity }}" step="0.01" required style="width: 100px;">
+                                <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem;">Buy</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p style="color: #94a3b8; margin-top: 1rem;">No sellers currently available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
