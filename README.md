@@ -1,4 +1,4 @@
-# 🏭 AI-Based Carbon Footprint & Carbon Trading System
+# 🏭 AI-Based Carbon Footprint Tracking & Reduction
 
 ### README.md
 
@@ -19,6 +19,33 @@ The system includes: - Factory onboarding\
 - Transaction logging\
 - Admin portal\
 - AI recommendations using Google Gemini
+
+## 📌 Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/yourusername/carbon_ai_agent.git
+    cd carbon_ai_agent
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## 📌 Usage
+
+1.  **Run the application:**
+
+    ```bash
+    python backend/app.py
+    ```
+
+2.  **Access the platform:**
+    Open your browser and navigate to `http://127.0.0.1:5000`.
+
 
 ## 📌 2. System Flow
 
@@ -119,3 +146,5 @@ Full AI-powered carbon trading ecosystem with: - Authentication\
 - Buy/Sell flows\
 - Admin panel\
 - AI insights
+
+
